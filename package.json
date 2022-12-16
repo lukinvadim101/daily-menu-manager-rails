@@ -1,0 +1,13 @@
+{
+  "name": "heroku-rails-menu",
+  "version": "1.0.0",
+  "dependencies": {
+    "@popperjs/core": "^2.11.6",
+    "@rails/activestorage": "^7.0.4",
+    "@rails/ujs": "^7.0.4",
+    "bootstrap": "^5.2.3",
+    "channels": "^0.0.4",
+    "jquery": "^3.6.2",
+    "turbolinks": "^5.2.0"
+  }
+}
