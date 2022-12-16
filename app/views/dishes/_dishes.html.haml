@@ -1,0 +1,6 @@
+- @dishes.each do |dish|
+  .card.justify-content-center.p-2{:style => "min-width: 25%"}
+    .mx-2.text-center
+      = link_to dish.name,                                                     |
+        dish_path(dish.id),                                                    |
+        class: 'text-primary fw-bold card-title h5 mb-0 text-decoration-none ' |

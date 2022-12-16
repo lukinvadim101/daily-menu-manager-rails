@@ -1,0 +1,7 @@
+- @categories.each do |category|
+  .card.p-2.mx-2.text-center{:style => "min-width: 6em", :type => "button"}
+    = link_to category[:name],                                      |
+      category_path(category[:id]),                                 |
+      class: "text-primary card-title h5 mb-0 text-decoration-none" |
+    %span.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.bg-primary
+      = category.dishes.count

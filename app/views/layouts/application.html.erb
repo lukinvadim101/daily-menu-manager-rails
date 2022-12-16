@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RailsMenu</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+<%= %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container" id="navbarNavAltMarkup">
+    <div class="navbar-nav justify-content-between d-inline-flex w-100">
+      <% if user_signed_in? %>
+        <%= render 'layouts/header_for_login' %>
+      <%  else %>
+        <%= render 'layouts/header_for_not_login' %>
+      <% end %>
+    </div>
+  </div>
+</nav>
+<div class='container mt-4'>
+  <% if flash[:notice].present? %>
+    <p class='text-center alert alert-warning'> <%= flash[:notice]%> </p>
+  <% end %>
+  <% if flash[:alert].present?  %>
+    <p class="alert alert-danger text-center"> <%= flash[:alert] %> </p>
+  <% end %>
+  <%= yield %>
+</div>
+</body>
+</html>

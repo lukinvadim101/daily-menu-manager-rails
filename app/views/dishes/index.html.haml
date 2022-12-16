@@ -1,0 +1,9 @@
+.row
+  .col
+    .card
+      .card-header.d-flex.justify-content-center
+        %h2 Dishes
+        = link_to  new_dish_path do
+          %b.fa.fa-plus
+      .d-flex.gap-3.m-3.justify-content-center.flex-wrap
+        = render 'dishes'

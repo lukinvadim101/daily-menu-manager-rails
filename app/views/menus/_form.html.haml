@@ -1,0 +1,48 @@
+#menu_container.card.p-3.m-auto.mt-5{:style => "width: 450px;"}
+  = nested_form_for @menu do |menu_form|
+    .my-3
+      %h2
+        = menu_form.label :date
+      %div
+        = menu_form.date_select :date
+    = menu_form.fields_for :dish_menus do |dish_menus_form|
+      - selected_dish = selected_dish(dish_menus_form.index.to_i)
+      - dish_price = dish_price(dish_menus_form.index.to_i)
+      .d-flex.align-items-center.my-1.justify-content-between
+        .d-flex
+          %span.mx-1= dish_menus_form.check_box :included
+        .mx-2
+          = dish_menus_form.select :dish_id,                                    |
+            options_for_select( @dishes.map{ |dish| [dish.name, dish.id,        |
+                               :data => { price: last_dish_price(dish.id) }] }, |
+                               :selected => selected_dish.id                    |
+            ),                                                                  |
+            class: 'form-control'                                               |
+        .justify-items-end
+          = dish_menus_form.text_field :price, |
+            placeholder: "Price",              |
+            value: dish_price,                 |
+            class: 'form-control py-0'         |
+        .btn.btn-outline-secondary
+          = dish_menus_form.link_to_remove "", class: ' text-black fa fa-trash'
+    %p
+      = menu_form.link_to_add "",                                 |
+        :dish_menus,                                              |
+        class: 'btn btn-outline-secondary mx-1 fa fa-plus', |
+        id: 'add_btn'                                             |
+    .my-3.text-center= menu_form.submit 'Save', class: 'btn btn-outline-secondary'
+:javascript
+  if (document.querySelector('#menu_container')) {
+      const menu_container = document.querySelector('#menu_container')
+      const [form] = [...menu_container.children].filter(node => node.tagName === 'FORM')
+
+      form.addEventListener('change', (e) => {
+          if (e.target.nodeName === 'SELECT'){
+              let input =   document.getElementsByName(`${e.target.name.slice(0, -9)}[price]`)[0]
+              let selected_dish_last_price = e.target.options[e.target.selectedIndex].dataset['price']
+                // При включении блюда в дневное меню система должна предложить для использования те настройки цены этого блюда,
+                // которые использовались в последний раз, то есть с учетом последнего (по дате) дневного меню, куда оно было включено
+              input.value = selected_dish_last_price
+          }
+      })
+  }

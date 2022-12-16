@@ -1,0 +1,18 @@
+.card{:id => "categories "}
+  .card-header.d-flex.justify-content-center
+    %h2 Categories
+    - if current_user.admin?
+      = link_to  new_category_path do
+        %b.fa.fa-plus
+  .card-body.d-flex.justify-content-center
+    - @categories.each do |category|
+      .d-flex.justify-content-between.card.w-25.p-2.m-1
+        .fw-bold.text-center.mx-2
+          = category.name
+        - if current_user.admin?
+          %hr.mx-5/
+          .d-flex.justify-content-center.align-content-center
+            = button_to category, method: :delete, class:"btn px-3" do
+              %i.fa.fa-trash
+            = link_to  edit_category_path(category[:id]) ,class:"btn px-3"  do
+              %i.fa.fa-gear

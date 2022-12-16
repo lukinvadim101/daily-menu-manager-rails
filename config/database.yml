@@ -1,0 +1,27 @@
+
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password:
+  host: localhost
+
+development:
+  <<: *default
+  database: rails_menu_development
+
+test:
+  <<: *default
+  database: rails_menu_test
+
+#production:
+#  <<: *default
+#  url: <%= ENV['DATABASE_URL'] %>
+#
+production:
+  <<: *default
+  database: rails_menu_production
+  username: rails_menu
+  password: <%= ENV['RAILS_MENU_DATABASE_PASSWORD'] %>
+

@@ -1,0 +1,8 @@
+.card
+  .card-header.d-flex.justify-content-center
+    %h2.text-center Menus
+    - if current_user.admin?
+      = link_to  new_menu_path do
+        %b.fa.fa-plus
+  .row.mt-4.m-0.d-flex.flex-row.justify-content-center.flex-wrap.card-body
+    = render 'menu'

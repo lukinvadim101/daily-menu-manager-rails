@@ -1,0 +1,20 @@
+.d-flex.justify-content-center.my-5
+  = form_for @dish do |f|
+    .my-2.d-flex
+      = f.label :name
+      %span.px-3= f.text_field :name , class: 'form-control'
+    .my-2.d-flex
+      = f.label :category_id
+      %span.px-3
+        = f.select :category_id, Category.all.map{|c| [c.name,c.id]}, class: 'form-control'
+    .my-2.d-flex
+      = f.label :price_type
+      %span.px-2
+        = f.select :price_type_id,                                                                 |
+          options_for_select( PriceType.all.map{ |pt| ["#{pt.portion} x #{pt.measurement}", pt.id, |
+                                                   :data => { portion: pt.portion }] }),           |
+          class: 'form-control'                                                                    |
+    .mt-2.d-flex
+      = f.label :price
+      %span.px-4= f.text_field :price , class: 'form-control'
+    .my-3.text-center= f.submit 'Save', class: 'btn btn-outline-secondary'

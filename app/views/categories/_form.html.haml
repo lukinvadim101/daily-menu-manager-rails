@@ -1,0 +1,5 @@
+= form_for @category do |f|
+  = f.label :name
+  = f.text_field :name
+  .mt-3
+    = f.submit 'Save!', class:'btn btn-outline-primary '
