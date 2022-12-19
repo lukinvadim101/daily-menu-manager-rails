@@ -24,11 +24,11 @@
             value: dish_price,                 |
             class: 'form-control py-0'         |
         .btn.btn-outline-secondary
-          = dish_menus_form.link_to_remove "", class: ' text-black fa fa-trash'
+          = dish_menus_form.link_to_remove "🗑️", class: ' text-black '
     %p
-      = menu_form.link_to_add "",                                 |
+      = menu_form.link_to_add "+ dish",                                 |
         :dish_menus,                                              |
-        class: 'btn btn-outline-secondary mx-1 fa fa-plus', |
+        class: 'btn btn-outline-secondary mx-1', |
         id: 'add_btn'                                             |
     .my-3.text-center= menu_form.submit 'Save', class: 'btn btn-outline-secondary'
 :javascript

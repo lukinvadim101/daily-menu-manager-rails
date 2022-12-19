@@ -39,7 +39,7 @@ class MenusController < ApplicationController
     @menu = Menu.create(menu_params)
 
     if @menu.save
-      redirect_to @menu, notice: 'Menu was created'
+      redirect_to root_path, notice: 'Menu was created'
     else
       redirect_to :index, alert: @menu.errors.full_messages.join(',')
     end
