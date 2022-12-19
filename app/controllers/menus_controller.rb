@@ -29,7 +29,7 @@ class MenusController < ApplicationController
     @menu.update(menu_params)
 
     if @menu.save
-      redirect_to @menu, notice: 'Menu was updated'
+      redirect_to root_path, notice: 'Menu was updated'
     else
       redirect_to :index, alert: @menu.errors.full_messages.join(',')
     end
