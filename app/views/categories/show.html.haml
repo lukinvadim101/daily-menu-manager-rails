@@ -7,7 +7,7 @@
     - if current_user.admin?
       %hr.mx-5/
       .d-flex.justify-content-center
-        = button_to @category, method: :delete, class:"btn-outline px-3" do
+        = button_to @category, method: :delete, class:"btn px-3" do
           %b.text-primary 🗑️
         = link_to  edit_category_path(@category[:id]) , class:"btn px-3" do
           %b.text-primary 🔧
