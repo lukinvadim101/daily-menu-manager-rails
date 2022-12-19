@@ -17,14 +17,14 @@ price_types = PriceType.create([{ measurement: 'Item', portion: 1.0 },
                                 { measurement: 'Weigh', portion: 0.100 }])
 
 peperoni = Dish.create(
-  name: 'Peperoni',
+  name: 'Peperoni1',
   price: 99,
   category_id: categories.first.id,
   price_type_id: price_types.first.id
 )
 
 margarita = Dish.create(
-  name: 'Margarita',
+  name: 'Margarita1',
   price: 959,
   category_id: categories.first.id,
   price_type_id: price_types.first.id
