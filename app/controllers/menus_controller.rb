@@ -1,7 +1,7 @@
 class MenusController < ApplicationController
   before_action :menu, only: %i[edit show update destroy]
   before_action :dishes, only: %i[edit new index destroy]
-  before_action :is_admin?, only: %i[create update destroy edit]
+  before_action :is_admin?, only: %i[create update destroy edit new]
 
   def new
     @menu = Menu.new
