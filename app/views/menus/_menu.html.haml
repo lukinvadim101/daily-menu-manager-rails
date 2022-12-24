@@ -4,7 +4,7 @@
       %h5.d-flex.card-title.m-2= m.date.strftime("%e %b %Y")
       - if current_user.admin?
         %span.d-flex
-          = button_to m, method: :delete, class:"btn px-3" do
+          = button_to m, method: :delete, class:"btn px-3", data: {confirm: "Are you sure?"} do
             %b 🗑️
           = link_to  edit_menu_path(m[:id]), class:"btn px-3" do
             %b 🔧
