@@ -4,7 +4,8 @@ class Dish < ApplicationRecord
   has_many :dish_menus
   has_many :menus, through: :dish_menus
 
-  validates :name, :price, :price_type_id, presence: true
+  validates :name, :price_type_id, presence: true
+  validates :price, presence: true, numericality: true
   validates :name, uniqueness: { case_sensitive: true }
 
   accepts_nested_attributes_for :dish_menus

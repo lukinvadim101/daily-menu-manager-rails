@@ -8,7 +8,7 @@ class DishesController < ApplicationController
     if @dish.save
       redirect_to @dish, notice: 'Dish was created'
     else
-      redirect_to :new, alert: @dish.errors.full_messages.join(', ')
+      redirect_to root_path, alert: @dish.errors.full_messages.join(', ')
     end
   end
 
@@ -16,15 +16,15 @@ class DishesController < ApplicationController
     if @dish.update(dish_params)
       redirect_to @dish, notice: 'Dish was updated'
     else
-      redirect_to :new, alert: @dish.errors.full_messages.join(', ')
+      redirect_to root_path, alert: @dish.errors.full_messages.join(', ')
     end
   end
 
   def destroy
     if @dish.destroy
-      redirect_to :index, notice: 'Dish was destroyed'
+      redirect_to root_path, notice: 'Dish was destroyed'
     else
-      redirect_to :index, alert: @dish.errors.full_messages.join(', ')
+      redirect_to root_path, alert: @dish.errors.full_messages.join(', ')
     end
   end
 

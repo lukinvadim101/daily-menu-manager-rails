@@ -28,7 +28,11 @@
     <p class="alert alert-danger text-center"> <%= flash[:alert] %> </p>
   <% end %>
   <%= yield %>
-  <%= link_to '↤ back', :back %>
+  <% unless current_page?('/') %>
+    <div class='mt-2'>
+      <%=  link_to '↤ back', :back, class: 'text-decoration-none h5' %>
+    </div>
+  <%  end %>
 </div>
 </body>
 </html>

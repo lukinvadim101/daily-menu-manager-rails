@@ -1,6 +1,7 @@
 .d-flex.justify-content-center.mt-5
   .card.p-2.mx-2.text-center{:style => "width: 40em"}
-    %h3.text-center= @category.name
+    %h5.text-center.text-primary.fw-bold.card-title.mb-0.text-decoration-none
+      =@category.name
     %span.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.bg-primary
       = @category.dishes.count
     = @category.dishes.any? ? @category.dishes.map{  |d| d.name  } : "[ No dish in category ]"

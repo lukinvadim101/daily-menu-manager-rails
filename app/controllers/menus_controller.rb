@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MenusController < ApplicationController
   before_action :menu, only: %i[edit show update destroy]
   before_action :dishes, only: %i[edit new index destroy]

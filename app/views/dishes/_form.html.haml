@@ -2,7 +2,7 @@
   = form_for @dish do |f|
     .my-2.d-flex
       = f.label :name
-      %span.px-3= f.text_field :name , class: 'form-control'
+      %span.px-3= f.text_field :name, class: 'form-control', required: true
     .my-2.d-flex
       = f.label :category_id
       %span.px-3
@@ -16,5 +16,5 @@
           class: 'form-control'                                                                    |
     .mt-2.d-flex
       = f.label :price
-      %span.px-4= f.text_field :price , class: 'form-control'
+      %span.px-4= f.text_field :price, class: 'form-control', required: true
     .my-3.text-center= f.submit 'Save', class: 'btn btn-outline-secondary'

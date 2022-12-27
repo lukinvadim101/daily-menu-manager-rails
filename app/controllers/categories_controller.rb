@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CategoriesController < ApplicationController
   before_action :category,  only: %i[show edit update destroy]
   before_action :is_admin?, only: %i[create update destroy edit new]
@@ -13,15 +14,15 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to @category, notice: 'Category was created'
+      redirect_to categories_path, notice: 'Category was created'
     else
-      redirect_to :new, alert: @category.errors.full_messages.join(', ')
+      redirect_to root_url, alert: @category.errors.full_messages.join(', ')
     end
   end
 
   def update
     if @category.update(category_params)
-      redirect_to @category, notice: 'Category was updated'
+      redirect_to categories_path, notice: 'Category was updated'
     else
       redirect_to :index, alert: @category.errors.full_messages.join(', ')
     end
