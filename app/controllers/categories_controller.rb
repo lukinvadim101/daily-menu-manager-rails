@@ -1,8 +1,7 @@
 # frozen_string_literal: true
-class CategoriesController < ApplicationController
-  before_action :category,  only: %i[show edit update destroy]
-  before_action :is_admin?, only: %i[create update destroy edit new]
 
+class CategoriesController < ApplicationController
+  before_action :category, only: %i[show edit update destroy]
   def index
     @categories = Category.all
   end

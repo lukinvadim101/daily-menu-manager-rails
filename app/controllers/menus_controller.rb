@@ -3,11 +3,11 @@
 class MenusController < ApplicationController
   before_action :menu, only: %i[edit show update destroy]
   before_action :dishes, only: %i[edit new index destroy]
-  before_action :is_admin?, only: %i[create update destroy edit new]
 
   def new
     @menu = Menu.new
     @dishes_in_menu = @menu.dishes
+    @dish_menu_all = DishMenu.all
     @dishes.count.times { @menu.dish_menus.build }
   end
 

@@ -13,22 +13,20 @@
           %span.mx-1= dish_menus_form.check_box :included
         .mx-2
           = dish_menus_form.select :dish_id,
-            options_for_select( @dishes.map{ |dish| [dish.name, dish.id,
-                               :data => { price: last_dish_price(dish.id) }] },
-                               :selected => selected_dish.id),
+            options_for_select( @dishes.pluck(:name,:id), selected_dish.id),
             class: 'form-control'
         .justify-items-end
-          = dish_menus_form.text_field :price,
-            placeholder: "Price",
-            value: dish_price,
-            class: 'form-control py-0'
+          = dish_menus_form.text_field :price, |
+            placeholder: "Price",              |
+            value: dish_price,                 |
+            class: 'form-control py-0'         |
         .btn.btn-outline-secondary
           = dish_menus_form.link_to_remove "🗑️", class: ' text-black '
     %p
-      = menu_form.link_to_add "+ dish",
-        :dish_menus,
-        class: 'btn btn-outline-secondary mx-1',
-        id: 'add_btn'
+      = menu_form.link_to_add "+ dish",                                 |
+        :dish_menus,                                              |
+        class: 'btn btn-outline-secondary mx-1', |
+        id: 'add_btn'                                             |
     .my-3.text-center= menu_form.submit 'Save', class: 'btn btn-outline-secondary'
 :javascript
   if (document.querySelector('#menu_container')) {
@@ -45,3 +43,8 @@
           }
       })
   }
+  //
+  // def selected_dish(form_index)
+  //   dish_in_dish_menu = @dishes_in_menu[dish_menus_form.index.to_i]
+  //   dish_in_dish_menu.nil? ? Dish.all[form_index] : dish_in_dish_menu.dish
+  // end

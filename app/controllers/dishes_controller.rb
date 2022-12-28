@@ -1,7 +1,5 @@
 class DishesController < ApplicationController
   before_action :dish, only: %i[update show destroy edit]
-  before_action :is_admin?, only: %i[create update destroy edit new]
-
   def create
     @dish = Dish.create(dish_params)
 
