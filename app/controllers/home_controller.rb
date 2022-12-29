@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @menus = Menu.all
+    @menus = Menu.order(:date).all
     @dishes = Dish.all
     @categories = Category.all
   end
