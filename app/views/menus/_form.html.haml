@@ -6,45 +6,44 @@
       %div
         = menu_form.date_select :date
     = menu_form.fields_for :dish_menus do |dish_menus_form|
-      - selected_dish = selected_dish(dish_menus_form.index.to_i)
-      - dish_price = dish_price(dish_menus_form.index.to_i)
       .d-flex.align-items-center.my-1.justify-content-between
         .d-flex
           %span.mx-1= dish_menus_form.check_box :included
         .mx-2
-          = dish_menus_form.select :dish_id,
-            options_for_select( @dishes.pluck(:name,:id), selected_dish.id),
-            class: 'form-control'
+          - if action_name == "edit"
+            = dish_menus_form.select :dish_id,
+              options_for_select( @dishes.map{ |dish| [dish.name, dish.id,
+                               :data => { price: last_dish_price(@dishes.find(dish.id)) }]},
+                               :selected => dish_menus_form.object.dish_id)
+          - if action_name == "new"
+            = dish_menus_form.select :dish_id,
+              options_for_select( @dishes.map{ |dish| [dish.name, dish.id,
+                               :data => { price: last_dish_price(@dishes.find(dish.id)) }]},
+                               :selected => @dishes[dish_menus_form.index.to_i].id)
         .justify-items-end
-          = dish_menus_form.text_field :price, |
-            placeholder: "Price",              |
-            value: dish_price,                 |
-            class: 'form-control py-0'         |
+          - if action_name == "edit"
+            = dish_menus_form.text_field :price,
+              value:  dish_menus_form.object.price.nil? ? last_dish_price(@dishes[dish_menus_form.index.to_i]) : dish_menus_form.object.price,
+              class: 'form-control py-0'
+          - if action_name == "new"
+            = dish_menus_form.text_field :price,
+              value: last_dish_price(@dishes[dish_menus_form.index.to_i]),
+              class: 'form-control py-0'
         .btn.btn-outline-secondary
-          = dish_menus_form.link_to_remove "🗑️", class: ' text-black '
+          = dish_menus_form.link_to_remove "🗑️"
     %p
-      = menu_form.link_to_add "+ dish",                                 |
+      = menu_form.link_to_add "+🍲",                                 |
         :dish_menus,                                              |
         class: 'btn btn-outline-secondary mx-1', |
         id: 'add_btn'                                             |
     .my-3.text-center= menu_form.submit 'Save', class: 'btn btn-outline-secondary'
 :javascript
   if (document.querySelector('#menu_container')) {
-      const menu_container = document.querySelector('#menu_container')
-      const [form] = [...menu_container.children].filter(node => node.tagName === 'FORM')
-
+      const [form] = [...document.querySelector('#menu_container').children].filter(node => node.tagName === 'FORM')
       form.addEventListener('change', (e) => {
           if (e.target.nodeName === 'SELECT'){
-              let input =   document.getElementsByName(`${e.target.name.slice(0, -9)}[price]`)[0]
-              let selected_dish_last_price = e.target.options[e.target.selectedIndex].dataset['price']
-                // При включении блюда в дневное меню система должна предложить для использования те настройки цены этого блюда,
-                // которые использовались в последний раз, то есть с учетом последнего (по дате) дневного меню, куда оно было включено
-              input.value = selected_dish_last_price
+              let price_input = document.getElementsByName(`${e.target.name.slice(0, -9)}[price]`)[0]
+              price_input.value = e.target.options[e.target.selectedIndex].dataset['price'] // selected_dish_last_price
           }
       })
   }
-  //
-  // def selected_dish(form_index)
-  //   dish_in_dish_menu = @dishes_in_menu[dish_menus_form.index.to_i]
-  //   dish_in_dish_menu.nil? ? Dish.all[form_index] : dish_in_dish_menu.dish
-  // end

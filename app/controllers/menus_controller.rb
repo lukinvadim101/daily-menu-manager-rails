@@ -17,6 +17,7 @@ class MenusController < ApplicationController
 
   def edit
     @dishes_in_menu = @menu.dish_menus
+    @dish_menu_all = DishMenu.all
   end
 
   def destroy
@@ -29,7 +30,6 @@ class MenusController < ApplicationController
 
   def update
     @menu.update(menu_params)
-
     if @menu.save
       redirect_to root_path, notice: 'Menu was updated'
     else
@@ -39,7 +39,6 @@ class MenusController < ApplicationController
 
   def create
     @menu = Menu.create(menu_params)
-
     if @menu.save
       redirect_to root_path, notice: 'Menu was created'
     else

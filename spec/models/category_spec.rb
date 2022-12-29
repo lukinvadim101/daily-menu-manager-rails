@@ -18,7 +18,7 @@ RSpec.describe Category, type: :model do
     it 'prevent delete Category if it contains Dishes' do
       dish.save
       category.destroy
-      expect(category.errors[:base].first).to eq 'Category contain dishes'
+      expect(category.errors[:base].first).to eq 'Cannot delete record because dependent dishes exist'
     end
   end
 end
