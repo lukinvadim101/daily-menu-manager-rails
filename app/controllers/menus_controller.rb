@@ -12,7 +12,7 @@ class MenusController < ApplicationController
   end
 
   def index
-    @menus = Menu.all
+    @menus = Menu.order(date: :desc)
   end
 
   def edit

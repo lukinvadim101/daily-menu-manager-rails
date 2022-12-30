@@ -28,5 +28,5 @@
           %h2.text-decoration-none Menus
           - if current_user.admin?
             = link_to "+", new_menu_path, class: 'text-decoration-none fw-bold h5'
-        .card-body.mt-1.d-flex.flex-wrap.flex-row-reverse.justify-content-center
+        .card-body.mt-1.d-flex.flex-wrap.flex-row.justify-content-center
           = render 'menus/menu'
