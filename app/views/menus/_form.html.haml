@@ -37,6 +37,10 @@
         class: 'btn btn-outline-secondary mx-1', |
         id: 'add_btn'                                             |
     .my-3.text-center= menu_form.submit 'Save', class: 'btn btn-outline-secondary'
+.mt-2.d-flex.justify-content-center
+  = link_to '↤ Menus',
+  menus_path,
+  class: 'text-decoration-none h6 m-auto my-3 btn btn-outline-secondary w-25 justify-content-center'
 :javascript
   if (document.querySelector('#menu_container')) {
       const [form] = [...document.querySelector('#menu_container').children].filter(node => node.tagName === 'FORM')

@@ -3,3 +3,7 @@
   = f.text_field :name, required: true
   .mt-3
     = f.submit 'Save!', class:'btn btn-outline-primary '
+.mt-2.d-flex.justify-content-center
+  = link_to '↤ Categories',
+   categories_path,
+   class: 'text-decoration-none h6 m-auto my-3 btn btn-outline-secondary w-25 justify-content-center'

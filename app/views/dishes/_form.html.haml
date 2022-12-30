@@ -17,4 +17,10 @@
     .mt-2.d-flex
       = f.label :price
       %span.px-4= f.text_field :price, class: 'form-control', required: true
-    .my-3.text-center= f.submit 'Save', class: 'btn btn-outline-secondary'
+    .my-3.text-center
+      = f.submit 'Save', class: 'btn btn-outline-success'
+.mt-2.d-flex.justify-content-center
+  = link_to '↤ Dishes',
+  dishes_path,
+  class: 'text-decoration-none h6 m-auto btn btn-outline-secondary w-25 '
+

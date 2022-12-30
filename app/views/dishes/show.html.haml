@@ -1,4 +1,5 @@
 %h2.text-center.my-5
+
   = @dish.name.capitalize
   Details
 .d-flex.justify-content-center
@@ -26,3 +27,5 @@
         %div
           = link_to  edit_dish_path , class:"btn px-3" do
             %b 🔧
+            .mt-2
+      = link_to '↤ Dishes', dishes_path, class: 'text-decoration-none h6 mx-auto btn btn-outline-secondary w-75'

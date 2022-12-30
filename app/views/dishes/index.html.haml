@@ -2,8 +2,10 @@
   .col
     .card
       .card-header.d-flex.justify-content-center
+
         %h2 Dishes
         - if current_user.admin?
           = link_to "+", new_dish_path, class: 'text-decoration-none fw-bold h5'
       .d-flex.gap-3.m-3.justify-content-center.flex-wrap
         = render 'dishes'
+      = link_to '🏠 Page', :index, class: 'text-decoration-none h6 mx-auto btn btn-outline-secondary w-25'

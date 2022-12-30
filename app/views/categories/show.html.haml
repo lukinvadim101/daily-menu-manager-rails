@@ -12,3 +12,7 @@
           %b.text-primary 🗑️
         = link_to  edit_category_path(@category[:id]) , class:"btn px-3" do
           %b.text-primary 🔧
+.mt-2.d-flex.justify-content-center
+  = link_to '↤ Categories',
+   categories_path,
+   class: 'text-decoration-none h6 m-auto my-3 btn btn-outline-secondary w-25 justify-content-center'
