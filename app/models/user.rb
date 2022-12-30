@@ -8,4 +8,8 @@ class User < ApplicationRecord
   def set_default_role
     self.role ||= :user
   end
+
+  def has_role?(i)
+    # code here
+  end
 end
